@@ -1,0 +1,235 @@
+<!doctype html>
+<html lang="km">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>ប្រភេទគេហទំព័រ - Gallery</title>
+  <meta name="description" content="គេហទំព័រ ថតរូប/ផលិតផល រូបភាព 5-6" />
+  <style>
+    :root{
+      --accent:#0ea5a4;
+      --bg:#0f172a;
+      --card:#0b1220;
+      --glass: rgba(255,255,255,0.04);
+      --muted: #94a3b8;
+      color-scheme: dark;
+    }
+    *{box-sizing:border-box}
+    body{font-family:Inter, system-ui, Arial, sans-serif;margin:0;background:linear-gradient(180deg,#071028 0%, #071726 100%);color:#e6eef6;line-height:1.4}
+
+    header{display:flex;align-items:center;justify-content:space-between;padding:18px 24px;background:linear-gradient(90deg, rgba(255,255,255,0.02), rgba(255,255,255,0.01));backdrop-filter: blur(6px)}
+    .brand{display:flex;gap:12px;align-items:center}
+    .logo{width:42px;height:42px;border-radius:8px;background:linear-gradient(135deg,var(--accent),#2563eb);display:flex;align-items:center;justify-content:center;font-weight:700}
+    nav{display:flex;gap:12px}
+    nav a{color:var(--muted);text-decoration:none;padding:8px 12px;border-radius:8px}
+    nav a.active, nav a:hover{background:var(--glass);color: #fff}
+
+    .container{max-width:1100px;margin:28px auto;padding:0 20px}
+    .hero{display:grid;grid-template-columns:1fr 380px;gap:20px;align-items:start}
+    .card{background:linear-gradient(180deg, rgba(255,255,255,0.02), rgba(255,255,255,0.01));border-radius:14px;padding:18px}
+    .title{font-size:22px;font-weight:700;margin:0 0 8px}
+    .subtitle{color:var(--muted);margin:0 0 14px}
+
+    /* Gallery grid */
+    .gallery{display:grid;grid-template-columns:repeat(3,1fr);gap:12px}
+    .gallery .item{position:relative;overflow:hidden;border-radius:10px;cursor:pointer}
+    .gallery img{width:100%;height:220px;object-fit:cover;display:block;transition:transform .35s ease}
+    .gallery .item:hover img{transform:scale(1.06)}
+    .tag{position:absolute;left:10px;bottom:10px;background:rgba(0,0,0,0.45);padding:6px 10px;border-radius:999px;font-size:13px}
+
+    /* Right column */
+    .right-col{display:flex;flex-direction:column;gap:12px}
+    .stats{display:flex;gap:12px}
+    .stat{flex:1;padding:12px;border-radius:10px;background:linear-gradient(180deg, rgba(255,255,255,0.01), rgba(255,255,255,0.02));text-align:center}
+    .stat h3{margin:0;font-size:18px}
+    .stat p{margin:6px 0 0;color:var(--muted);font-size:13px}
+
+    /* Lightbox */
+    .lightbox{position:fixed;inset:0;background:rgba(2,6,23,0.85);display:flex;align-items:center;justify-content:center;padding:28px;opacity:0;pointer-events:none;transition:opacity .18s ease}
+    .lightbox.show{opacity:1;pointer-events:auto}
+    .lb-inner{max-width:1100px;width:100%;display:grid;grid-template-columns:1fr 320px;gap:16px}
+    .lb-img{border-radius:12px;overflow:hidden}
+    .lb-img img{width:100%;height:70vh;object-fit:contain}
+    .lb-info{background:linear-gradient(180deg, rgba(255,255,255,0.02), rgba(255,255,255,0.01));padding:16px;border-radius:12px;display:flex;flex-direction:column}
+    .lb-info h2{margin:0 0 8px}
+    .lb-info p{color:var(--muted);margin:0 0 12px}
+    .close-btn{margin-top:auto;padding:10px;border-radius:10px;border:none;background:var(--accent);color:#042022;font-weight:700;cursor:pointer}
+
+    footer{padding:20px;text-align:center;color:var(--muted);font-size:14px}
+
+    /* Responsive */
+    @media (max-width:980px){
+      .hero{grid-template-columns:1fr}
+      .gallery{grid-template-columns:repeat(2,1fr)}
+      .lb-inner{grid-template-columns:1fr}
+      .lb-img img{height:60vh}
+    }
+    @media (max-width:520px){
+      .gallery img{height:160px}
+    }
+  </style>
+<body>
+  <header>
+    <div class="brand">
+      <div class="logo">MPL</div>
+      <div>
+        <div style="font-weight:700">My Photo Landscape</div>
+        <div style="font-size:12px;color:var(--muted)">Showcase — 5-6 latest landscapes</div>
+      </div>
+    </div>
+    <nav>
+      <a class="active">Home</a>
+      <a>Gallery</a>
+      <a>Contact</a>
+    </nav>
+  </header>
+  <main class="container">
+    <section class="hero">
+      <div>
+        <div class="card">
+          <h1 class="title">រូបភាពទាន់ថ្មី 5-6</h1>
+          <p class="subtitle">គំរូគេហទំព័រមួយសាមញ្ញ សម្រាប់បង្ហាញរូបភាព landscape ឬផលិតផល។ ចុចលើរូបភាពដើម្បីមើលពិស្តារ។</p>
+
+          <div class="gallery" id="gallery">
+            <!-- 6 sample images -->
+            <div class="item" data-title="Landscape 1" data-desc="បរិយាកាសពេលព្រឹក">
+              <img loading="lazy" src="https://picsum.photos/id/1018/1000/600" alt="Landscape 1">
+              <div class="tag">Landscape</div>
+            </div>
+            <div class="item" data-title="Landscape 2" data-desc="ភ្លៀងលិច">
+              <img loading="lazy" src="https://picsum.photos/id/1025/1000/600" alt="Landscape 2">
+              <div class="tag">Dog Cool</div>
+            </div>
+            <div class="item" data-title="Landscape 3" data-desc="ភ្នំខ្ពស់">
+              <img loading="lazy" src="https://picsum.photos/id/1035/1000/600" alt="Landscape 3">
+              <div class="tag">Waterfall</div>
+            </div>
+            <div class="item" data-title="Landscape 4" data-desc="សមុទ្រពេលលិច">
+              <img loading="lazy" src="https://picsum.photos/id/1043/1000/600" alt="Landscape 4">
+              <div class="tag">Forest</div>
+            </div>
+            <div class="item" data-title="Landscape 5" data-desc="ដើមឈើពស}">
+              <img loading="lazy" src="https://picsum.photos/id/1056/1000/600" alt="Landscape 5">
+              <div class="tag">Sky Blue</div>
+            </div>
+            <div class="item" data-title="Landscape 6" data-desc="ក្រុងពេលយប់">
+              <img loading="lazy" src="https://picsum.photos/id/1069/1000/600" alt="Landscape 6">
+              <div class="tag">Sea</div>
+            </div>
+          </div>
+        </div>
+
+        <div style="height:12px"></div>
+        <div class="card">
+          <h3 style="margin:0 0 8px">ពណ៍ណែនាំ</h3>
+          <p class="subtitle">ប្ដូររូបភាពដោយដាក់ URL ថ្មី ឬផ្ទុករូប local ហើយជំនួស src នៅក្នុង <code>&lt;img&gt;</code>។</p>
+        </div>
+      </div>
+
+      <aside class="right-col">
+        <div class="card stats">
+          <div class="stat">
+            <h3>6</h3>
+            <p>រូបភាព</p>
+          </div>
+          <div class="stat">
+            <h3>1.2K</h3>
+            <p>អ្នកទស្សនា</p>
+          </div>
+        </div>
+
+        <div class="card">
+          <h3 style="margin:0 0 8px">ស្វែងរករូបភាព</h3>
+          <input id="search" placeholder="ស្វែងរក..." style="width:100%;padding:10px;border-radius:8px;border:none;background:rgba(255,255,255,0.02);color:inherit">
+        </div>
+
+        <div class="card">
+          <h3 style="margin:0 0 8px">កំណត់</h3>
+          <p class="subtitle">ពិនិត្យលក្ខណៈ និងប្ដូរទំហំ gallery, ការបង្ហាញ lightbox និងការរុករក។</p>
+        </div>
+      </aside>
+    </section>
+  </main>
+
+  <!-- Lightbox -->
+  <div class="lightbox" id="lightbox" role="dialog" aria-hidden="true">
+    <div class="lb-inner">
+      <div class="lb-img card">
+        <img id="lb-image" src="" alt="">
+      </div>
+      <div class="lb-info">
+        <h2 id="lb-title">Title</h2>
+        <p id="lb-desc">Description</p>
+        <button class="close-btn" id="closeBtn">Close</button>
+      </div>
+    </div>
+  </div>
+
+  <footer>
+    © 2025 - គេហទំព័រគំរូ • រៀបចំដោយ ChatGPT
+  </footer>
+
+  <script>
+    // Basic gallery interactive behavior
+    const gallery = document.getElementById('gallery');
+    const lightbox = document.getElementById('lightbox');
+    const lbImage = document.getElementById('lb-image');
+    const lbTitle = document.getElementById('lb-title');
+    const lbDesc = document.getElementById('lb-desc');
+    const closeBtn = document.getElementById('closeBtn');
+    const search = document.getElementById('search');
+    gallery.addEventListener('click', (e) => {
+      const item = e.target.closest('.item');
+      if(!item) return;
+      const img = item.querySelector('img');
+      const title = item.dataset.title  img.alt  'Image';
+      const desc = item.dataset.desc || '';
+      openLightbox(img.src, title, desc);
+    });
+
+    function openLightbox(src, title, desc){
+      lbImage.src = src;
+      lbTitle.textContent = title;
+      lbDesc.textContent = desc;
+      lightbox.classList.add('show');
+      lightbox.setAttribute('aria-hidden', 'false');
+    }
+    function closeLightbox(){
+      lightbox.classList.remove('show');
+      lightbox.setAttribute('aria-hidden', 'true');
+      lbImage.src = '';
+    }
+    closeBtn.addEventListener('click', closeLightbox);
+    lightbox.addEventListener('click', (e)=>{
+      if(e.target === lightbox) closeLightbox();
+    });
+    document.addEventListener('keydown', (e)=>{
+      if(e.key === 'Escape') closeLightbox();
+    });
+
+    // Simple search filter
+    search.addEventListener('input', (e)=>{
+      const q = e.target.value.trim().toLowerCase();
+      document.querySelectorAll('#gallery .item').forEach(item=>{
+        const t = (item.dataset.title + ' ' + item.dataset.desc + ' ' + item.querySelector('img').alt).toLowerCase();
+        item.style.display = t.includes(q) ? '' : 'none';
+      });
+    });
+
+    // Small helper: if user wants to swap images locally, they can drag & drop image file to an item
+    gallery.querySelectorAll('.item').forEach(item=>{
+      item.addEventListener('dragover', (ev)=>{ ev.preventDefault(); item.style.opacity = '0.8'; });
+      item.addEventListener('dragleave', ()=>{ item.style.opacity = ''; });
+      item.addEventListener('drop', (ev)=>{
+        ev.preventDefault(); item.style.opacity = '';
+        const f = ev.dataTransfer.files && ev.dataTransfer.files[0];
+        if(!f) return;
+        const img = item.querySelector('img');
+        const reader = new FileReader();
+        reader.onload = function(evt){ img.src = evt.target.result; }
+        reader.readAsDataURL(f);
+      });
+    });
+  </script>
+</body>
+</html>

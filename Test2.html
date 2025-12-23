@@ -1,0 +1,132 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Football Boots Gallery 2025</title>
+<style>
+  body {
+    margin:0;
+    font-family: Arial, sans-serif;
+    background: #0b1220;
+    color: #e6eef8;
+  }
+  h1 {
+    text-align:center;
+    margin:20px 0;
+    font-size:28px;
+    color:#f97316;
+  }
+  .gallery {
+    display: grid;
+    grid-template-columns: repeat(auto-fit,minmax(300px,1fr));
+    gap:15px;
+    padding:20px;
+    max-width:1200px;
+    margin:0 auto;
+  }
+  .card {
+    border-radius:12px;
+    overflow:hidden;
+    cursor:pointer;
+    box-shadow:0 6px 18px rgba(2,6,23,0.5);
+    transition: transform 0.3s;
+  }
+  .card:hover {
+    transform: scale(1.03);
+  }
+  .card img {
+    width:100%;
+    height:200px;
+    object-fit:cover;
+    display:block;
+  }
+  .caption {
+    padding:10px;
+    text-align:center;
+    color:#94a3b8;
+    font-size:14px;
+  }
+  .lightbox {
+    position: fixed;
+    inset:0;
+    background: rgba(2,6,23,0.85);
+    display:none;
+    align-items:center;
+    justify-content:center;
+    z-index:100;
+  }
+  .lightbox.open {
+    display:flex;
+  }
+  .lightbox img {
+    max-width:90%;
+    max-height:80%;
+    border-radius:12px;
+    box-shadow:0 10px 30px rgba(0,0,0,0.7);
+  }
+  .close {
+    position:absolute;
+    top:20px;
+    right:20px;
+    font-size:28px;
+    color:white;
+    cursor:pointer;
+  }
+</style>
+</head>
+<body>
+<h1>Football Boots Gallery — 2025</h1>
+
+<div class="gallery">
+  <div class="card" onclick="openLightbox(0)">
+    <img src="https://assets.goal.com/images/v3/blt97e8bca8a912ce4d/Best%20football%20boots%202025%20.jpg" alt="Boot 1">
+    <div class="caption">Nike Mercurial Vapor 2025</div>
+  </div>
+  <div class="card" onclick="openLightbox(1)">
+    <img src="https://blogger.googleusercontent.com/img/b/R29vZ2xl/AVvXsEi1WroUpIhvr_fSJzli5Q3cPqyrV98WE5zr9scGYgg_M_LX2afNCK2vEJNSmsmjtO_YYAx2OK4563b557_OC2NyFMilqPE9-a85co-3U59x9PBfGXhLEiAtaRB5RzjHIdQOg-fHyiRHC-dp9zgzkIgMs_pUq2lgRmlls34XBl4BdtY2GSsK2Zepqc9rFJFz/s1600/nike-2025-elite%20(7).jpg" alt="Boot 2">
+    <div class="caption">Nike 2025 Elite</div>
+  </div>
+  <div class="card" onclick="openLightbox(2)">
+    <img src="https://blogger.googleusercontent.com/img/b/R29vZ2xl/AVvXsEg02Pc9jV0Gafxbzq2R9lFB2Mgr-EFFjydUHXb62FzYUlf18PEgYzDOA5C0nGFS8xWwTz7B6gFOFq0c39a01Du2V0QLil9_LEYShgtchBfuP3yKePUN9b7JN5Tj_bRnYRxmZ2o_DVqsF5GglRGZ5IEyscH8c0Lq9hHdcBNF3LyxHyHPCR_7WEvcAeOS7A9K/s1600/Next-Gen%20Adidas%20F50%20Messi%202025%20Signature%20Boots%20Leaked%20%20(8).jpg" alt="Boot 3">
+    <div class="caption">Adidas F50 Messi</div>
+  </div>
+  <div class="card" onclick="openLightbox(3)">
+    <img src="Mixed Latest Boots.jfif" alt="Boot 4">
+    <div class="caption">Mixed Latest Boots</div>
+  </div>
+  <div class="card" onclick="openLightbox(4)">
+    <img src="Turf Boots.jfif" alt="Boot 5">
+    <div class="caption">Turf Boots</div>
+  </div>
+  <div class="card" onclick="openLightbox(5)">
+    <img src="bo jackson nike shoes.jfif" alt="Boot 6">
+    <div class="caption">Bo jackson nike shoes"</div>
+  </div>
+</div>
+
+<div class="lightbox" id="lightbox">
+  <span class="close" onclick="closeLightbox()">×</span>
+  <img id="lb-img" src="" alt="Expanded">
+</div>
+
+<script>
+  const images = [
+    "https://assets.goal.com/images/v3/blt97e8bca8a912ce4d/Best%20football%20boots%202025%20.jpg",
+    "https://blogger.googleusercontent.com/img/b/R29vZ2xl/AVvXsEi1WroUpIhvr_fSJzli5Q3cPqyrV98WE5zr9scGYgg_M_LX2afNCK2vEJNSmsmjtO_YYAx2OK4563b557_OC2NyFMilqPE9-a85co-3U59x9PBfGXhLEiAtaRB5RzjHIdQOg-fHyiRHC-dp9zgzkIgMs_pUq2lgRmlls34XBl4BdtY2GSsK2Zepqc9rFJFz/s1600/nike-2025-elite%20(7).jpg",
+    "https://blogger.googleusercontent.com/img/b/R29vZ2xl/AVvXsEg02Pc9jV0Gafxbzq2R9lFB2Mgr-EFFjydUHXb62FzYUlf18PEgYzDOA5C0nGFS8xWwTz7B6gFOFq0c39a01Du2V0QLil9_LEYShgtchBfuP3yKePUN9b7JN5Tj_bRnYRxmZ2o_DVqsF5GglRGZ5IEyscH8c0Lq9hHdcBNF3LyxHyHPCR_7WEvcAeOS7A9K/s1600/Next-Gen%20Adidas%20F50%20Messi%202025%20Signature%20Boots%20Leaked%20%20(8).jpg",
+    "/mnt/data/digital_photograph_displays_a_collection_of_six_.png",
+    "https://picsum.photos/1200/600?random=11",
+    "https://picsum.photos/1200/600?random=12"
+  ];
+  function openLightbox(i){
+    document.getElementById('lb-img').src = images[i];
+    document.getElementById('lightbox').classList.add('open');
+  }
+  function closeLightbox(){
+    document.getElementById('lightbox').classList.remove('open');
+    document.getElementById('lb-img').src = '';
+  }
+</script>
+</body>
+</html>
