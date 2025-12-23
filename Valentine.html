@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Form</title>
+    <style>
+
+    </style>
+</head>
+<body>
+
+    <h1>Text Form</h1>
+    value 1: <input type="text" id="value1"><br>
+    value 2: <input type="text" id="value2"><br>
+
+    <div id="res"><p></p></div>
+    <button onclick="getForm()">Enter</button>
+    <button onclick="reset()">Reset</button>
+
+    <script>
+        let value1, value2;
+        function getForm(){
+            value1 = Number(document.getElementById("value1").value);
+            value2 = Number(document.getElementById("value2").value);
+
+            document.getElementById("res").innerText = value1 + value2;
+        }
+        function reset(){
+            document.getElementById("value1").value = "";
+            document.getElementById("value2").value = "";
+            document.getElementById("res").innerHTML = " ";
+        }
+    </script>
+</body>
+</html>
