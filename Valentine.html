@@ -1,36 +1,69 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Form</title>
-    <style>
+<meta charset="UTF-8">
+<title>Valentine Test</title>
+<style>
+    body {
+        height: 100vh;
+        margin: 0;
+        background: pink;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        font-family: Arial;
+    }
 
-    </style>
+    .box {
+        background: white;
+        padding: 30px;
+        border-radius: 20px;
+        text-align: center;
+        position: relative;
+        width: 300px;
+        height: 200px;
+    }
+
+    button {
+        padding: 12px 25px;
+        font-size: 18px;
+        border: none;
+        border-radius: 30px;
+        cursor: pointer;
+    }
+
+    #yes {
+        background: #ff4d6d;
+        color: white;
+    }
+
+    #no {
+        background: #ccc;
+        position: absolute;
+        left: 100px;
+        top: 120px;
+    }
+</style>
 </head>
 <body>
 
-    <h1>Text Form</h1>
-    value 1: <input type="text" id="value1"><br>
-    value 2: <input type="text" id="value2"><br>
+<div class="box">
+    <h2>Will you be my Valentine? 💖</h2>
+    <button id="yes">YES</button>
+    <button id="no">NO</button>
+</div>
 
-    <div id="res"><p></p></div>
-    <button onclick="getForm()">Enter</button>
-    <button onclick="reset()">Reset</button>
+<script>
+    const noBtn = document.getElementById("no");
 
-    <script>
-        let value1, value2;
-        function getForm(){
-            value1 = Number(document.getElementById("value1").value);
-            value2 = Number(document.getElementById("value2").value);
+    noBtn.addEventListener("mouseover", () => {
+        const x = Math.random() * 200;
+        const y = Math.random() * 140;
+        noBtn.style.left = x + "px";
+        noBtn.style.top = y + "px";
+    });
+</script>
 
-            document.getElementById("res").innerText = value1 + value2;
-        }
-        function reset(){
-            document.getElementById("value1").value = "";
-            document.getElementById("value2").value = "";
-            document.getElementById("res").innerHTML = " ";
-        }
-    </script>
 </body>
 </html>
+
